@@ -405,7 +405,7 @@ button { font-family: inherit; color: inherit; }
   .toast  { bottom: 40px; }
 
   /* Today — centred card on the desk */
-  .view[data-screen="today"] .session { align-items: center; justify-content: center; padding: 30px 48px 44px; }
+  .view[data-screen="today"] .session { flex: 1; align-items: center; justify-content: center; padding: 30px 48px 44px; }
   .view[data-screen="today"] .session-card {
     width: 640px; max-width: 100%; flex: none; align-self: center;
     background: var(--paper); border: 1px solid var(--line); border-radius: 4px;
