@@ -1,0 +1,464 @@
+/* ============================================================
+   Radix — herbarium visual system
+   Tokens, type roles and screens ported faithfully from the
+   Radix design doc (mobile + desktop web views).
+   ============================================================ */
+
+:root {
+  /* Palette · pressed & dried */
+  --paper: #F5F0E4;   /* app ground / phone      */
+  --plate: #FBF8EF;   /* card / specimen surface */
+  --ink:   #2E2B22;   /* text                    */
+  --leaf:  #55643F;   /* latin, primary accent   */
+  --moss:  #8A9070;   /* labels                  */
+  --petal: #A56A54;   /* delight / danger accent */
+  --fade:  #A79E8B;   /* muted text              */
+  --desk:  #EAE4D3;   /* desktop backdrop        */
+
+  --line:      rgba(46, 43, 34, .16);
+  --line-firm: rgba(46, 43, 34, .25);
+  --line-hair: rgba(46, 43, 34, .35);
+
+  /* Type roles */
+  --display: 'Cormorant Garamond', Georgia, serif;   /* latin + headwords */
+  --body:    'Alegreya Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono:    'Cutive Mono', ui-monospace, monospace; /* specimen labels   */
+
+  --nav-h: 62px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; }
+
+body {
+  background: var(--desk);
+  color: var(--ink);
+  font-family: var(--body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+button { font-family: inherit; color: inherit; }
+
+/* ============================================================
+   App shell
+   ============================================================ */
+.app {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+}
+
+/* Screen stage — screens are absolutely-stacked layers for cross-fade */
+.stage {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  overflow: hidden;
+}
+.view {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity .34s ease, transform .34s ease;
+  overflow: hidden;
+}
+.view.is-active { opacity: 1; transform: none; pointer-events: auto; }
+.scroll { flex: 1; min-height: 0; overflow-y: auto; overflow-x: hidden; }
+.scroll::-webkit-scrollbar { width: 8px; }
+.scroll::-webkit-scrollbar-thumb { background: rgba(46,43,34,.14); border-radius: 8px; }
+
+/* ============================================================
+   Nav — top (desktop) + bottom tab bar (mobile)
+   ============================================================ */
+.topnav {
+  display: none;                 /* desktop only */
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 22px 48px 18px;
+  background: var(--desk);
+  border-bottom: 1px solid var(--line);
+  height: var(--nav-h);
+  flex-shrink: 0;
+}
+.wordmark {
+  font-family: var(--display); font-style: italic; font-weight: 500;
+  font-size: 24px; color: var(--leaf); text-decoration: none; line-height: 1;
+}
+.topnav-links { display: flex; gap: 34px; }
+.tlink {
+  background: none; border: 0; cursor: pointer;
+  font: 11px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase;
+  color: var(--ink); padding: 0 0 3px; transition: color .16s;
+}
+.tlink:hover { color: var(--leaf); }
+.tlink.active { color: var(--leaf); border-bottom: 1px solid var(--leaf); }
+
+.tabbar {
+  display: flex; border-top: 1px solid var(--line);
+  padding: 14px 0 18px; background: var(--paper); flex-shrink: 0;
+}
+.tab {
+  flex: 1; text-align: center; background: none; border: 0; cursor: pointer;
+  font: 11px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--fade);
+  padding: 3px 0; position: relative; transition: color .16s;
+}
+.tab:hover { color: var(--moss); }
+.tab.active { color: var(--leaf); }
+.tab.active::after {
+  content: ""; position: absolute; left: 50%; transform: translateX(-50%); bottom: -6px;
+  width: 26px; height: 1px; background: var(--leaf);
+}
+
+/* ============================================================
+   Shared atoms
+   ============================================================ */
+.eyebrow    { font: 11px/1 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--moss); }
+.eyebrow.faint { color: var(--fade); }
+.spec-label { font: 11px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--fade); }
+.latin { font-family: var(--display); font-style: italic; font-weight: 500; color: var(--leaf); }
+.head  { font-family: var(--display); font-weight: 500; color: var(--ink); }
+.title { font-family: var(--display); font-weight: 500; font-size: 30px; color: var(--ink); }
+
+.btn {
+  font-family: var(--body); font-size: 15px; color: var(--ink);
+  background: none; border: 1px solid var(--line-firm); border-radius: 3px;
+  padding: 14px 0; cursor: pointer;
+  transition: border-color .16s, color .16s, background .16s;
+}
+.btn:hover { border-color: var(--petal); }
+.btn:focus-visible { outline: 2px solid var(--leaf); outline-offset: 2px; }
+.btn.leaf  { border-color: var(--leaf); color: var(--leaf); font-weight: 500; }
+.btn.leaf:hover { background: rgba(85,100,63,.07); border-color: var(--leaf); }
+.btn.block { width: 100%; }
+.btn[disabled] { color: var(--fade); cursor: default; }
+.btn[disabled]:hover { border-color: var(--line-firm); background: none; }
+
+/* ============================================================
+   Session (Today) — decompose + compose
+   ============================================================ */
+.session { display: flex; flex-direction: column; height: 100%; }
+
+/* On desktop, the session card floats centred on the desk */
+.session-card { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+
+.sess-head {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 22px 24px 0;
+}
+.dots { display: flex; gap: 5px; }
+.dot  { width: 5px; height: 5px; border-radius: 50%; border: 1px solid var(--fade); }
+.dot.done { background: var(--leaf); border-color: var(--leaf); }
+.dot.now  { background: var(--petal); border-color: var(--petal); }
+
+.stage-body {
+  flex: 1; min-height: 0;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  padding: 0 24px; gap: 8px; text-align: center;
+}
+.mode-label { font: 11px/1 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--fade); margin-bottom: 18px; }
+
+/* the parse */
+.parse-row { display: flex; gap: 26px; align-items: flex-start; }
+.seg { display: flex; flex-direction: column; align-items: center; }
+.seg .surface {
+  font-family: var(--display); font-weight: 500; font-size: 46px; line-height: 1;
+  border-bottom: 1px solid var(--line-hair); padding-bottom: 4px;
+}
+.seg .leader { width: 1px; height: 20px; background: rgba(46,43,34,.3); }
+.seg .root   { font-family: var(--display); font-style: italic; font-size: 19px; color: var(--leaf); margin-top: 2px; }
+.seg .gl     { font-size: 13px; color: var(--fade); }
+.whole { font-family: var(--display); font-weight: 500; font-size: 46px; line-height: 1; }
+.ask   { font-size: 14px; color: var(--fade); margin-top: 14px; }
+.sense { margin-top: 26px; max-width: 300px; font-size: 16px; line-height: 1.45; }
+
+/* parse reveal animation */
+.parse-row .seg .leader,
+.parse-row .seg .root,
+.parse-row .seg .gl,
+.sense {
+  opacity: 0; transform: translateY(4px);
+  transition: opacity .45s ease, transform .45s ease;
+}
+.parse-row.revealed .leader,
+.parse-row.revealed .root,
+.parse-row.revealed .gl,
+.sense.revealed { opacity: 1; transform: none; }
+.parse-row.revealed .root { transition-delay: .16s; }
+.parse-row.revealed .gl   { transition-delay: .24s; }
+.sense.revealed { transition-delay: .34s; }
+
+.foot { padding: 0 24px 28px; }
+.rate { display: flex; gap: 10px; }
+.rate .btn { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 12px 0 10px; }
+.rate .btn small { font: 10px/1 var(--mono); color: var(--fade); }
+.rate .btn.leaf small { color: var(--moss); }
+
+/* compose */
+.compose-meaning { font-family: var(--display); font-style: italic; font-size: 26px; color: var(--ink); }
+.slots { display: flex; gap: 12px; margin-top: 30px; align-items: center; }
+.slot-fixed {
+  min-width: 104px; text-align: center; background: var(--plate);
+  border: 1px solid var(--line-hair); border-radius: 3px; padding: 14px 18px;
+  font-family: var(--display); font-weight: 500; font-size: 30px; line-height: 1;
+}
+.slot-drop {
+  min-width: 104px; height: 62px; border: 1px dashed var(--line-hair); border-radius: 3px;
+  display: flex; align-items: center; justify-content: center;
+  font: 11px/1 var(--mono); color: var(--fade);
+  transition: border-color .16s, background .16s, color .16s;
+}
+.slot-drop.filled {
+  border-style: solid; background: var(--plate); color: var(--ink);
+  font-family: var(--display); font-weight: 500; font-size: 30px;
+}
+.slot-drop.wrong { animation: shake .4s; border-color: var(--petal); }
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); } 40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); } 80% { transform: translateX(4px); }
+}
+.tray-label { font-size: 13px; color: var(--fade); margin: 26px 0 10px; }
+.tray { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; max-width: 320px; }
+.tile {
+  border: 1px solid var(--line-firm); border-radius: 3px; padding: 9px 16px;
+  font-family: var(--display); font-size: 22px; line-height: 1; background: transparent;
+  cursor: pointer; transition: border-color .16s, opacity .2s, background .2s;
+}
+.tile:hover { border-color: var(--leaf); }
+.tile.used  { background: var(--plate); opacity: .35; cursor: default; pointer-events: none; }
+.hint-link { text-align: center; font: 11px/1 var(--mono); color: var(--fade); }
+.hint-link a { color: var(--fade); text-decoration: underline; cursor: pointer; }
+.hint-link a:hover { color: var(--leaf); }
+
+/* ============================================================
+   Specimen plate
+   ============================================================ */
+.plate {
+  background: var(--plate); border: 1px solid rgba(46,43,34,.2); border-radius: 3px;
+  padding: 24px 22px; display: flex; flex-direction: column;
+}
+.plate-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.plate .lat-big { font-family: var(--display); font-style: italic; font-weight: 500; font-size: 52px; line-height: 1.05; color: var(--leaf); margin-top: 10px; }
+.plate .en { font-size: 16px; color: var(--ink); margin-top: 6px; }
+.plate .sprig { flex-shrink: 0; margin-top: 4px; }
+.derivs { border-top: 1px solid var(--line); margin-top: 18px; padding-top: 14px; display: flex; flex-direction: column; gap: 9px; }
+.deriv { display: flex; gap: 10px; align-items: baseline; }
+.deriv .w { font-family: var(--display); font-weight: 500; font-size: 19px; min-width: 106px; }
+.deriv .g { font-size: 13px; color: rgba(46,43,34,.65); line-height: 1.35; }
+.delight { border-top: 1px solid var(--line); margin-top: 16px; padding-top: 14px; }
+.delight .tag { font: 11px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--petal); }
+.delight p { font-size: 14px; line-height: 1.5; margin-top: 6px; }
+.plate .provenance { margin-top: auto; padding-top: 12px; font: 11px/1 var(--mono); letter-spacing: .08em; color: var(--moss); }
+
+/* mobile root-of-day view wrapper */
+.rod-head { padding: 22px 24px 0; }
+.rod-plate-wrap { padding: 16px 20px 0; }
+.rod-foot { padding: 18px 20px 26px; }
+
+/* ============================================================
+   Closing
+   ============================================================ */
+.closing {
+  flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 0 36px; text-align: center; background: var(--paper);
+}
+.closing .said  { font-size: 15px; color: rgba(46,43,34,.7); margin-top: 30px; }
+.closing .motto { font-family: var(--display); font-style: italic; font-weight: 500; font-size: 44px; line-height: 1.1; color: var(--leaf); margin-top: 14px; }
+.closing .trans { font-size: 15px; color: rgba(46,43,34,.7); margin-top: 8px; }
+.closing .divider { width: 44px; height: 1px; background: var(--line-firm); margin: 32px 0; }
+.closing .tally { font: 12px/1 var(--mono); letter-spacing: .06em; color: var(--moss); }
+.closing .again { margin-top: 30px; }
+
+/* ============================================================
+   Garden
+   ============================================================ */
+.garden-head { padding: 24px 24px 0; }
+.garden-head .sub   { font-size: 14px; color: rgba(46,43,34,.6); margin-top: 4px; }
+.garden-head .count { font: 11px/1 var(--mono); letter-spacing: .1em; color: var(--moss); margin-top: 10px; }
+.garden-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px 10px; padding: 18px 20px 24px; }
+.specimen {
+  background: var(--plate); border: 1px solid rgba(46,43,34,.14); border-radius: 3px;
+  padding: 12px 6px 10px; display: flex; flex-direction: column; align-items: center; gap: 6px;
+  cursor: pointer; transition: border-color .16s, transform .16s;
+}
+.specimen:hover { border-color: var(--leaf); transform: translateY(-1px); }
+.specimen.dormant { opacity: .38; }
+.specimen.sel { border-color: var(--leaf); box-shadow: 0 0 0 1px var(--leaf) inset; }
+.specimen .lat-s { font-family: var(--display); font-style: italic; font-size: 15px; line-height: 1; color: var(--leaf); }
+.specimen .tag { font: 9px/1 var(--mono); letter-spacing: .08em; color: var(--fade); }
+
+/* ============================================================
+   Library
+   ============================================================ */
+.lib-head { padding: 24px 24px 8px; }
+.lib-head .sub { font-size: 14px; color: rgba(46,43,34,.6); margin-top: 4px; }
+.lib-search {
+  margin: 8px 20px 0; display: flex; align-items: center; gap: 8px;
+  background: var(--plate); border: 1px solid var(--line-firm); border-radius: 3px; padding: 10px 12px;
+  transition: border-color .16s;
+}
+.lib-search:focus-within { border-color: var(--leaf); }
+.lib-search input { flex: 1; border: 0; background: none; font-family: var(--body); font-size: 15px; color: var(--ink); }
+.lib-search input:focus { outline: none; }
+.lib-search input::placeholder { color: var(--fade); }
+.lib-cats { display: flex; gap: 18px; padding: 14px 24px 0; }
+.lib-cat {
+  background: none; border: 0; cursor: pointer;
+  font: 11px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink);
+  padding: 0 0 3px; transition: color .16s;
+}
+.lib-cat:hover { color: var(--leaf); }
+.lib-cat.active { color: var(--leaf); border-bottom: 1px solid var(--leaf); }
+.lib-grid { display: grid; grid-template-columns: 1fr; gap: 12px; padding: 16px 20px 24px; }
+.lib-card {
+  text-align: left; background: var(--plate); border: 1px solid rgba(46,43,34,.14); border-radius: 3px;
+  padding: 14px 16px; display: flex; flex-direction: column; gap: 3px; cursor: pointer;
+  transition: border-color .16s, transform .16s;
+}
+.lib-card:hover { border-color: var(--leaf); transform: translateY(-1px); }
+.lib-card.unopened { opacity: .5; }
+.lib-card .r-top { display: flex; justify-content: space-between; align-items: baseline; }
+.lib-card .r-latin { font-family: var(--display); font-style: italic; font-weight: 500; font-size: 21px; color: var(--leaf); }
+.lib-card .r-tag { font: 9.5px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--fade); }
+.lib-card .r-mean { font-size: 13.5px; color: var(--ink); }
+.lib-card .r-kids { font-size: 12px; color: rgba(46,43,34,.55); }
+.lib-empty { padding: 40px 24px; text-align: center; color: var(--fade); font-size: 14px; }
+
+/* ============================================================
+   Settings
+   ============================================================ */
+.set-head { padding: 24px 24px 6px; }
+.set-list { padding: 8px 24px 8px; }
+.set-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  padding: 16px 0; border-top: 1px solid var(--line);
+}
+.set-row:last-of-type { border-bottom: 1px solid var(--line); }
+.set-row .label { font-size: 15px; }
+.set-row .hint  { font-size: 12.5px; color: rgba(46,43,34,.55); margin-top: 2px; }
+.stepper { display: flex; align-items: center; gap: 14px; }
+.step-btn {
+  width: 28px; height: 28px; background: none; border: 1px solid var(--line-firm); border-radius: 3px;
+  font-size: 15px; color: var(--ink); cursor: pointer; transition: border-color .16s;
+}
+.step-btn:hover { border-color: var(--leaf); }
+.step-val { font-family: var(--display); font-size: 22px; min-width: 24px; text-align: center; }
+.set-actions { display: flex; gap: 10px; }
+.mini-btn {
+  background: none; border: 1px solid var(--line-firm); border-radius: 3px;
+  padding: 8px 16px; font-family: var(--body); font-size: 14px; color: var(--ink); cursor: pointer;
+  transition: border-color .16s, color .16s, background .16s;
+}
+.mini-btn:hover { border-color: var(--leaf); color: var(--leaf); }
+.mini-btn.danger { border-color: rgba(165,106,84,.5); color: var(--petal); }
+.mini-btn.danger:hover { border-color: var(--petal); background: rgba(165,106,84,.06); }
+.set-foot { padding: 22px 24px 30px; font: 11px/1 var(--mono); letter-spacing: .08em; color: var(--fade); }
+.set-foot a { color: var(--moss); text-decoration: underline; }
+.set-foot a:hover { color: var(--leaf); }
+
+/* ============================================================
+   Plate overlay sheet (mobile taps + root-of-the-day)
+   ============================================================ */
+.plate-overlay {
+  position: absolute; inset: 0; z-index: 30;
+  background: var(--paper);
+  transform: translateY(100%);
+  transition: transform .34s cubic-bezier(.2,.7,.2,1);
+  display: flex; flex-direction: column;
+}
+.plate-overlay.show { transform: none; }
+.plate-overlay .rod-plate-wrap .plate { margin: 0; }
+
+/* ============================================================
+   Toast
+   ============================================================ */
+.toast {
+  position: fixed; left: 50%; bottom: 92px; transform: translateX(-50%) translateY(10px);
+  background: var(--ink); color: var(--paper); font: 12px/1.3 var(--mono); letter-spacing: .04em;
+  padding: 10px 16px; border-radius: 4px; opacity: 0; pointer-events: none;
+  transition: opacity .24s, transform .24s; z-index: 40; white-space: nowrap;
+}
+.toast.show { opacity: .96; transform: translateX(-50%) translateY(0); }
+
+/* ============================================================
+   MOBILE  (default, < 860px) — phone feel, full bleed
+   ============================================================ */
+.view { background: var(--paper); }
+
+/* Garden plate detail slides over on mobile (rendered as its own view) */
+
+/* ============================================================
+   DESKTOP  (>= 860px) — top nav, content on the desk
+   ============================================================ */
+@media (min-width: 860px) {
+  .app { background: var(--desk); }
+  .topnav { display: flex; }
+  .tabbar { display: none; }
+  .stage  { background: var(--desk); }
+  .view   { background: var(--desk); }
+  .toast  { bottom: 40px; }
+
+  /* Today — centred card on the desk */
+  .view[data-screen="today"] .session { align-items: center; justify-content: center; padding: 30px 48px 44px; }
+  .view[data-screen="today"] .session-card {
+    width: 640px; max-width: 100%; flex: none; align-self: center;
+    background: var(--paper); border: 1px solid var(--line); border-radius: 4px;
+    box-shadow: 0 1px 6px rgba(46,43,34,.07);
+    padding: 6px 0 0; overflow: hidden;
+  }
+  .view[data-screen="today"] .stage-body { padding: 44px 44px 40px; }
+  .view[data-screen="today"] .foot { padding: 0 44px 32px; }
+  .view[data-screen="today"] .sess-head { padding: 24px 44px 0; }
+  .view[data-screen="today"] .closing { border-radius: 4px; }
+
+  /* Today session is a plain block on desktop, not full height */
+  .view[data-screen="today"] .scroll { display: flex; }
+
+  /* Garden — grid + persistent plate panel */
+  .view[data-screen="garden"] .garden-layout {
+    display: flex; gap: 32px; padding: 28px 48px 40px; min-height: 0; flex: 1;
+    max-width: 1180px; margin: 0 auto; width: 100%;
+  }
+  .view[data-screen="garden"] .garden-main { flex: 1.2; display: flex; flex-direction: column; min-height: 0; }
+  .view[data-screen="garden"] .garden-head { padding: 0 0 2px; }
+  .view[data-screen="garden"] .garden-grid {
+    grid-template-columns: repeat(4, 1fr); gap: 14px 12px; padding: 16px 0 0; overflow-y: auto;
+  }
+  .view[data-screen="garden"] .garden-plate {
+    width: 400px; flex-shrink: 0; align-self: flex-start;
+    max-height: 100%; overflow: auto;
+  }
+  .view[data-screen="garden"] .garden-plate.empty { display: flex; align-items: center; justify-content: center; text-align: center; color: var(--fade); font-size: 14px; min-height: 260px; border: 1px dashed var(--line-firm); background: transparent; }
+
+  /* Library — folio grid, 3 columns */
+  .view[data-screen="library"] .lib-wrap { max-width: 1180px; margin: 0 auto; width: 100%; display: flex; flex-direction: column; min-height: 0; flex: 1; }
+  .view[data-screen="library"] .lib-head { display: flex; align-items: baseline; justify-content: space-between; padding: 28px 48px 0; }
+  .view[data-screen="library"] .lib-search { margin: 0; width: 320px; }
+  .view[data-screen="library"] .lib-cats { padding: 14px 48px 0; }
+  .view[data-screen="library"] .lib-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; padding: 18px 48px 40px; overflow-y: auto; }
+
+  /* Settings — narrow, centred */
+  .view[data-screen="settings"] .set-wrap {
+    width: 520px; max-width: 100%; margin: 0 auto; background: var(--paper);
+    border: 1px solid var(--line); border-radius: 4px; margin-top: 34px; margin-bottom: 34px;
+    align-self: center; box-shadow: 0 1px 6px rgba(46,43,34,.07);
+  }
+  .view[data-screen="settings"] .scroll { display: flex; flex-direction: column; align-items: center; }
+}
+
+/* Slightly roomier type on very wide screens */
+@media (min-width: 1200px) {
+  .view[data-screen="today"] .session-card { width: 640px; }
+}
+
+/* Tiny phones */
+@media (max-width: 360px) {
+  .garden-grid { gap: 10px 8px; padding: 16px 14px 20px; }
+  .stage-body { padding: 0 18px; }
+}
