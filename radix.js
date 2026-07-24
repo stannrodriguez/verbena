@@ -877,7 +877,7 @@
   }
 
   function renderSettings() {
-    const v = views.settings;
+    const v = views.about;
     v.innerHTML = `
       <div class="scroll">
         <div class="set-wrap">
@@ -972,10 +972,10 @@
   /* ===========================================================
      Router / boot
      =========================================================== */
-  const RENDERERS = { today: renderToday, garden: renderGarden, library: renderLibrary, settings: renderSettings };
+  const RENDERERS = { today: renderToday, garden: renderGarden, library: renderLibrary, about: renderSettings };
 
   function buildViews() {
-    ['today', 'garden', 'library', 'settings'].forEach((name) => {
+    ['today', 'garden', 'library', 'about'].forEach((name) => {
       const el = document.createElement('div');
       el.className = 'view';
       el.dataset.screen = name;

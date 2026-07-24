@@ -472,12 +472,12 @@ button { font-family: inherit; color: inherit; }
   .view[data-screen="library"] .lib-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; padding: 18px 48px 40px; overflow-y: auto; }
 
   /* Settings — narrow, centred */
-  .view[data-screen="settings"] .set-wrap {
+  .view[data-screen="about"] .set-wrap {
     width: 520px; max-width: 100%; margin: 0 auto; background: var(--paper);
     border: 1px solid var(--line); border-radius: 4px; margin-top: 34px; margin-bottom: 34px;
     align-self: center; box-shadow: 0 1px 6px rgba(46,43,34,.07);
   }
-  .view[data-screen="settings"] .scroll { display: flex; flex-direction: column; align-items: center; }
+  .view[data-screen="about"] .scroll { display: flex; flex-direction: column; align-items: center; }
 }
 
 /* Slightly roomier type on very wide screens */
