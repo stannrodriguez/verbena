@@ -845,11 +845,43 @@
   /* ===========================================================
      SETTINGS
      =========================================================== */
+  /* The four screens, explained in the herbarium's voice. */
+  const ABOUT_SCREENS = [
+    ['Today', 'A short session of cards. <em>Decompose</em> reveals the roots hidden inside a word; <em>Compose</em> asks you to build one from a prefix and a root. Rate how well it came back — <b>Again</b>, <b>Good</b>, or <b>Easy</b> — and the next review is scheduled for you.'],
+    ['Garden', 'Every root you plant is pressed here like a specimen, drawn as a plant that grows from seedling to bloom as you review it. Let one lapse and it goes dormant, waiting to be tended again.'],
+    ['Library', 'The whole folio — 110 Latin roots, 30 prefixes, 20 suffixes — to browse and search. Tap any root to open its plate: its family of derivatives and a small etymological delight.'],
+  ];
+
+  function aboutHTML() {
+    const grow = [1, 2, 3, 4].map((st) => `<span class="grow-step">${sprig(st, 34, 46)}</span>`).join('');
+    const steps = ABOUT_SCREENS.map(([name, body]) => `
+      <div class="about-item">
+        <div class="about-name">${name}</div>
+        <p>${body}</p>
+      </div>`).join('');
+    return `
+      <div class="about-head">
+        <div class="eyebrow">radix · about</div>
+        <div class="title">A herbarium of roots</div>
+        <p class="about-lede">Most English words grow from Latin roots. Radix teaches you to see them — to press a word like a specimen, read the roots within, and grow a garden of what you know.</p>
+      </div>
+      <div class="about-grow">
+        ${grow}
+        <div class="about-grow-cap">seedling → in bloom, as a root is reviewed</div>
+      </div>
+      <div class="about-list">${steps}</div>
+      <div class="about-note">
+        <div class="tag">the method</div>
+        <p>Radix uses <em>spaced review</em>: roots you know well return rarely, ones you stumble on return soon. One new root a day is plenty — each brings its whole family with it. Everything lives on this device: no accounts, no analytics.</p>
+      </div>`;
+  }
+
   function renderSettings() {
     const v = views.settings;
     v.innerHTML = `
       <div class="scroll">
         <div class="set-wrap">
+          ${aboutHTML()}
           <div class="set-head"><div class="title">Settings</div></div>
           <div class="set-list">
             <div class="set-row">
