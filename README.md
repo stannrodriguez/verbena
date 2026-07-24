@@ -38,8 +38,10 @@ Or just open `index.html` in a browser.
   meaning and four derivatives), **30 prefixes**, and **20 suffixes**.
   Search filters within the active category; tapping a root opens its
   specimen plate.
-- **Settings** — new roots/day, reviews/day, export / import, reset.
-  Everything is local: no accounts, no analytics.
+- **About** — how Radix works (the two Today modes, the growing garden,
+  the folio, and the spaced-review method), followed by settings: new
+  roots/day, reviews/day, export / import, reset. Everything is local: no
+  accounts, no analytics.
 
 ## Design system
 

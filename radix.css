@@ -331,9 +331,37 @@ button { font-family: inherit; color: inherit; }
 .lib-empty { padding: 40px 24px; text-align: center; color: var(--fade); font-size: 14px; }
 
 /* ============================================================
+   About  (shares the settings screen)
+   ============================================================ */
+.about-head { padding: 24px 24px 4px; }
+.about-head .title { margin-top: 8px; }
+.about-lede { font-size: 15px; line-height: 1.55; color: var(--ink); margin-top: 10px; }
+
+.about-grow {
+  display: flex; align-items: flex-end; gap: 10px;
+  padding: 18px 24px 20px; border-bottom: 1px solid var(--line);
+}
+.grow-step { display: inline-flex; align-items: flex-end; opacity: .9; }
+.about-grow-cap { font: 10.5px/1.3 var(--mono); letter-spacing: .08em; color: var(--fade); margin-left: 4px; }
+
+.about-list { padding: 6px 24px 4px; }
+.about-item { padding: 16px 0; border-bottom: 1px solid var(--line); }
+.about-item:last-child { border-bottom: none; }
+.about-name { font-family: var(--display); font-style: italic; font-weight: 500; font-size: 21px; color: var(--leaf); }
+.about-item p { font-size: 14px; line-height: 1.55; color: var(--ink); margin-top: 5px; }
+.about-item b { font-weight: 700; }
+
+.about-note {
+  margin: 4px 24px 4px; padding: 14px 16px;
+  background: var(--plate); border: 1px solid var(--line); border-radius: 3px;
+}
+.about-note .tag { font: 11px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--petal); }
+.about-note p { font-size: 13.5px; line-height: 1.55; margin-top: 6px; color: var(--ink); }
+
+/* ============================================================
    Settings
    ============================================================ */
-.set-head { padding: 24px 24px 6px; }
+.set-head { padding: 24px 24px 6px; border-top: 1px solid var(--line); margin-top: 12px; }
 .set-list { padding: 8px 24px 8px; }
 .set-row {
   display: flex; align-items: center; justify-content: space-between; gap: 14px;
@@ -444,12 +472,12 @@ button { font-family: inherit; color: inherit; }
   .view[data-screen="library"] .lib-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; padding: 18px 48px 40px; overflow-y: auto; }
 
   /* Settings — narrow, centred */
-  .view[data-screen="settings"] .set-wrap {
+  .view[data-screen="about"] .set-wrap {
     width: 520px; max-width: 100%; margin: 0 auto; background: var(--paper);
     border: 1px solid var(--line); border-radius: 4px; margin-top: 34px; margin-bottom: 34px;
     align-self: center; box-shadow: 0 1px 6px rgba(46,43,34,.07);
   }
-  .view[data-screen="settings"] .scroll { display: flex; flex-direction: column; align-items: center; }
+  .view[data-screen="about"] .scroll { display: flex; flex-direction: column; align-items: center; }
 }
 
 /* Slightly roomier type on very wide screens */
