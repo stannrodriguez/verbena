@@ -528,9 +528,10 @@
         <div class="sense" data-sense>${esc(item.sense)}</div>
       </div>
       <div class="foot">
+        <div class="rate-ask">How well did you know it?</div>
         <div class="rate">
-          <button class="btn" data-rate="again">Again<small>tomorrow</small></button>
-          <button class="btn leaf" data-rate="good">Good<small>4 days</small></button>
+          <button class="btn" data-rate="again">Not yet<small>tomorrow</small></button>
+          <button class="btn leaf" data-rate="good">Knew it<small>4 days</small></button>
           <button class="btn" data-rate="easy">Easy<small>9 days</small></button>
         </div>
       </div>`;
@@ -611,9 +612,9 @@
     });
   }
   function rateWord(rate, word) {
-    if (rate === 'again') return word + ' — again tomorrow';
+    if (rate === 'again') return word + ' — back tomorrow';
     if (rate === 'easy') return word + ' — see you in 9 days';
-    return word + ' — pressed. good.';
+    return word + ' — knew it. back in 4 days';
   }
 
   function wireCompose(v, item) {
