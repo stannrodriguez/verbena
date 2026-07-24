@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radix — a herbarium of Latin roots</title>
+<meta name="description" content="Radix — learn Latin roots by pressing them like specimens. Parse words into their roots, compose meanings, and grow a garden of what you know.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Cutive+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="radix.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cpath d='M60 108 C 55 78, 65 52, 60 22' stroke='%2355643F' stroke-width='3' fill='none'/%3E%3Cellipse cx='45' cy='80' rx='14' ry='6' fill='%2355643F' transform='rotate(-34 45 80)'/%3E%3Cellipse cx='75' cy='62' rx='14' ry='6' fill='%2355643F' transform='rotate(34 75 62)'/%3E%3Cellipse cx='46' cy='46' rx='13' ry='6' fill='%2355643F' transform='rotate(-34 46 46)'/%3E%3Ccircle cx='60' cy='14' r='5' fill='%23A56A54'/%3E%3Ccircle cx='52' cy='20' r='5' fill='%23A56A54'/%3E%3Ccircle cx='68' cy='20' r='5' fill='%23A56A54'/%3E%3C/svg%3E">
+</head>
+<body>
+  <div class="app" id="app">
+
+    <!-- Desktop top nav -->
+    <header class="topnav" aria-label="Primary (desktop)">
+      <a class="wordmark" href="#/today">radix</a>
+      <nav class="topnav-links">
+        <button class="tlink" data-tab="today"    type="button">today</button>
+        <button class="tlink" data-tab="garden"   type="button">garden</button>
+        <button class="tlink" data-tab="library"  type="button">library</button>
+        <button class="tlink" data-tab="settings" type="button">settings</button>
+      </nav>
+    </header>
+
+    <!-- Screen stage -->
+    <main class="stage" id="screen" aria-live="polite"><!-- rendered --></main>
+
+    <!-- Mobile bottom tab bar -->
+    <nav class="tabbar" aria-label="Primary (mobile)">
+      <button class="tab" data-tab="today"    type="button">today</button>
+      <button class="tab" data-tab="garden"   type="button">garden</button>
+      <button class="tab" data-tab="library"  type="button">library</button>
+      <button class="tab" data-tab="settings" type="button">settings</button>
+    </nav>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </div>
+
+  <script src="radix.js"></script>
+</body>
+</html>

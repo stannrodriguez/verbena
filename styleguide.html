@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radix — visual system</title>
+<meta name="description" content="Radix visual system — palette, type roles, and the parse signature.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Cutive+Mono&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cpath d='M60 108 C 55 78, 65 52, 60 22' stroke='%2355643F' stroke-width='3' fill='none'/%3E%3Cellipse cx='45' cy='80' rx='14' ry='6' fill='%2355643F' transform='rotate(-34 45 80)'/%3E%3Cellipse cx='75' cy='62' rx='14' ry='6' fill='%2355643F' transform='rotate(34 75 62)'/%3E%3Cellipse cx='46' cy='46' rx='13' ry='6' fill='%2355643F' transform='rotate(-34 46 46)'/%3E%3Ccircle cx='60' cy='14' r='5' fill='%23A56A54'/%3E%3Ccircle cx='52' cy='20' r='5' fill='%23A56A54'/%3E%3Ccircle cx='68' cy='20' r='5' fill='%23A56A54'/%3E%3C/svg%3E">
+<style>
+  :root {
+    --paper:#F5F0E4; --plate:#FBF8EF; --ink:#2E2B22; --leaf:#55643F;
+    --moss:#8A9070; --petal:#A56A54; --fade:#A79E8B; --desk:#EAE4D3;
+    --line:rgba(46,43,34,.16);
+    --display:'Cormorant Garamond',Georgia,serif;
+    --body:'Alegreya Sans',-apple-system,sans-serif;
+    --mono:'Cutive Mono',ui-monospace,monospace;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background:var(--desk); color:var(--ink); font-family:var(--body);
+    min-height:100dvh; display:flex; flex-direction:column; align-items:center;
+    padding:40px 16px; -webkit-font-smoothing:antialiased;
+  }
+  .back {
+    align-self:flex-start; max-width:760px; width:100%; margin:0 auto 18px;
+    font:11px/1 var(--mono); letter-spacing:.16em; text-transform:uppercase;
+    color:var(--moss); text-decoration:none;
+  }
+  .back:hover { color:var(--leaf); }
+  .lede { max-width:760px; width:100%; margin:0 auto 20px; }
+  .lede h1 { font-family:var(--display); font-weight:500; font-size:34px; color:var(--ink); }
+  .lede p  { font-size:15px; color:rgba(46,43,34,.65); margin-top:6px; max-width:52ch; }
+
+  .card {
+    width:760px; max-width:100%; background:var(--paper);
+    border:1px solid var(--line); border-radius:4px; box-shadow:0 1px 6px rgba(46,43,34,.07);
+    padding:36px 40px; display:flex; flex-direction:column; gap:32px;
+  }
+  .eyebrow { font:11px/1 var(--mono); letter-spacing:.16em; text-transform:uppercase; color:var(--moss); }
+  .swatches { display:flex; gap:12px; flex-wrap:wrap; }
+  .sw { flex:1 1 90px; display:flex; flex-direction:column; gap:6px; }
+  .chip { height:56px; border-radius:3px; }
+  .chip.b { border:1px solid rgba(46,43,34,.2); }
+  .sw .name { font:11px/1.5 var(--mono); color:var(--ink); }
+  .sw .hex { color:var(--fade); }
+
+  .cols { display:flex; gap:40px; }
+  .col-a { flex:1.2; display:flex; flex-direction:column; gap:14px; }
+  .col-b { flex:1; display:flex; flex-direction:column; gap:14px; }
+  .role { border-top:1px solid var(--line); padding-top:12px; }
+  .role .note { font:11px/1.4 var(--mono); color:var(--fade); margin-top:6px; }
+  .r-latin { font-family:var(--display); font-style:italic; font-weight:500; font-size:44px; line-height:1; color:var(--leaf); }
+  .r-head  { font-family:var(--display); font-weight:500; font-size:30px; color:var(--ink); }
+  .r-body  { font-size:15px; line-height:1.5; }
+  .r-spec  { font:12px/1 var(--mono); letter-spacing:.14em; text-transform:uppercase; color:var(--moss); }
+
+  .sig {
+    background:var(--plate); border:1px solid var(--line); border-radius:4px;
+    padding:28px 20px; display:flex; flex-direction:column; align-items:center;
+  }
+  .sig-row { display:flex; gap:22px; align-items:baseline; }
+  .seg { display:flex; flex-direction:column; align-items:center; }
+  .seg .surface { font-family:var(--display); font-weight:500; font-size:34px; border-bottom:1px solid rgba(46,43,34,.35); padding-bottom:2px; }
+  .seg .leader { width:1px; height:16px; background:rgba(46,43,34,.3); }
+  .seg .root { font-family:var(--display); font-style:italic; font-size:17px; color:var(--leaf); }
+  .seg .gl { font-size:12px; color:var(--fade); }
+  .caption { font-size:13px; line-height:1.5; color:rgba(46,43,34,.7); }
+
+  @media (max-width:680px) {
+    .cols { flex-direction:column; gap:28px; }
+    .card { padding:26px 22px; }
+  }
+</style>
+</head>
+<body>
+  <a class="back" href="index.html">&larr; back to radix</a>
+  <div class="lede">
+    <h1>Visual system</h1>
+    <p>Radix reads like a pressed-plant herbarium: paper grounds, dried greens, a single terracotta for delight. Tokens, type roles, and the parse signature.</p>
+  </div>
+
+  <div class="card">
+    <!-- Palette -->
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div class="eyebrow">Palette · pressed &amp; dried</div>
+      <div class="swatches">
+        <div class="sw"><div class="chip b" style="background:#F5F0E4"></div><div class="name">paper<br><span class="hex">#F5F0E4</span></div></div>
+        <div class="sw"><div class="chip b" style="background:#FBF8EF"></div><div class="name">plate<br><span class="hex">#FBF8EF</span></div></div>
+        <div class="sw"><div class="chip" style="background:#2E2B22"></div><div class="name">ink<br><span class="hex">#2E2B22</span></div></div>
+        <div class="sw"><div class="chip" style="background:#55643F"></div><div class="name">leaf<br><span class="hex">#55643F</span></div></div>
+        <div class="sw"><div class="chip" style="background:#8A9070"></div><div class="name">moss<br><span class="hex">#8A9070</span></div></div>
+        <div class="sw"><div class="chip" style="background:#A56A54"></div><div class="name">petal<br><span class="hex">#A56A54</span></div></div>
+        <div class="sw"><div class="chip" style="background:#A79E8B"></div><div class="name">fade<br><span class="hex">#A79E8B</span></div></div>
+      </div>
+    </div>
+
+    <div class="cols">
+      <!-- Type roles -->
+      <div class="col-a">
+        <div class="eyebrow">Type roles</div>
+        <div class="role"><div class="r-latin">spectāre</div><div class="note">latin display — cormorant garamond italic · always green, always italic</div></div>
+        <div class="role"><div class="r-head">circumspect</div><div class="note">english headword — cormorant garamond roman, ink</div></div>
+        <div class="role"><div class="r-body">Body and UI set in Alegreya Sans — quiet, humanist, legible small. Chrome nearly disappears.</div><div class="note">body / ui — alegreya sans 400–700</div></div>
+        <div class="role"><div class="r-spec">radix · specimen xxiv · adv.</div><div class="note">specimen label — cutive mono, letterspaced uppercase</div></div>
+      </div>
+
+      <!-- Signature -->
+      <div class="col-b">
+        <div class="eyebrow">Signature — the parse</div>
+        <div class="sig">
+          <div class="sig-row">
+            <div class="seg"><div class="surface">trans</div><div class="leader"></div><div class="root">trans</div><div class="gl">across</div></div>
+            <div class="seg"><div class="surface">port</div><div class="leader"></div><div class="root">portāre</div><div class="gl">to carry</div></div>
+          </div>
+        </div>
+        <div class="caption">A word separates like a plant lifted from soil: segments part, hairline leaders drop to the Latin beneath. Used everywhere a word is explained — cards, plates, library.</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
