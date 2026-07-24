@@ -202,7 +202,175 @@
       planted: 'not yet planted · unopened',
     },
   };
-  const LIB_ORDER = ['spect', 'port', 'dic', 'duc', 'mitt', 'scrib', 'cap', 'fer', 'vid', 'vert', 'ten', 'cur'];
+  const DETAILED_ORDER = ['spect', 'port', 'dic', 'duc', 'mitt', 'scrib', 'cap', 'fer', 'vid', 'vert', 'ten', 'cur'];
+
+  /* The rest of the folio — [id, latin, meaning, [four derivatives]].
+     Real Latin roots; each derivative genuinely descends from its root. */
+  const MORE_ROOTS = [
+    ['audi', 'audīre', 'to hear', ['audio', 'audible', 'audience', 'auditorium']],
+    ['ven', 'venīre', 'to come', ['convene', 'invent', 'prevent', 'avenue']],
+    ['voc', 'vocāre', 'to call', ['vocal', 'invoke', 'advocate', 'vocation']],
+    ['fac', 'facere', 'to make, to do', ['factory', 'manufacture', 'faculty', 'benefactor']],
+    ['jac', 'jacere', 'to throw', ['reject', 'project', 'inject', 'eject']],
+    ['spir', 'spīrāre', 'to breathe', ['inspire', 'respire', 'conspire', 'expire']],
+    ['grad', 'gradī', 'to step', ['gradual', 'progress', 'degrade', 'retrograde']],
+    ['ced', 'cēdere', 'to go, to yield', ['precede', 'recede', 'proceed', 'concede']],
+    ['flu', 'fluere', 'to flow', ['fluent', 'influence', 'fluid', 'superfluous']],
+    ['struct', 'struere', 'to build', ['structure', 'construct', 'instruct', 'obstruct']],
+    ['rupt', 'rumpere', 'to break', ['rupture', 'interrupt', 'erupt', 'corrupt']],
+    ['tract', 'trahere', 'to drag, to pull', ['attract', 'extract', 'contract', 'subtract']],
+    ['sent', 'sentīre', 'to feel', ['sentiment', 'consent', 'resent', 'dissent']],
+    ['vol', 'velle', 'to wish', ['voluntary', 'benevolent', 'volition', 'malevolent']],
+    ['cred', 'crēdere', 'to believe', ['credit', 'incredible', 'creed', 'credential']],
+    ['nasc', 'nāscī', 'to be born', ['native', 'nascent', 'innate', 'renaissance']],
+    ['mort', 'morī', 'to die', ['mortal', 'mortuary', 'immortal', 'mortician']],
+    ['pon', 'pōnere', 'to place, to put', ['component', 'postpone', 'opponent', 'proponent']],
+    ['sequ', 'sequī', 'to follow', ['sequel', 'consequence', 'sequence', 'subsequent']],
+    ['tang', 'tangere', 'to touch', ['tangent', 'tangible', 'contingent', 'contact']],
+    ['plic', 'plicāre', 'to fold', ['complicate', 'replicate', 'implicate', 'duplicate']],
+    ['reg', 'regere', 'to rule, to guide', ['regent', 'direct', 'correct', 'regime']],
+    ['solv', 'solvere', 'to loosen', ['solve', 'dissolve', 'resolve', 'absolve']],
+    ['sci', 'scīre', 'to know', ['science', 'conscious', 'omniscient', 'prescient']],
+    ['sta', 'stāre', 'to stand', ['stable', 'status', 'constant', 'stationary']],
+    ['mov', 'movēre', 'to move', ['remove', 'motion', 'motive', 'commotion']],
+    ['leg', 'legere', 'to read, to choose', ['legible', 'elect', 'collect', 'lecture']],
+    ['nunc', 'nūntiāre', 'to announce', ['announce', 'pronounce', 'denounce', 'enunciate']],
+    ['clud', 'claudere', 'to close', ['include', 'exclude', 'conclude', 'seclude']],
+    ['flect', 'flectere', 'to bend', ['reflect', 'deflect', 'flexible', 'inflection']],
+    ['pel', 'pellere', 'to drive', ['compel', 'repel', 'expel', 'propel']],
+    ['pend', 'pendēre', 'to hang, to weigh', ['depend', 'suspend', 'pendant', 'appendix']],
+    ['spond', 'spondēre', 'to pledge', ['respond', 'sponsor', 'correspond', 'despondent']],
+    ['fund', 'fundere', 'to pour', ['refund', 'profuse', 'confound', 'fusion']],
+    ['gen', 'genus', 'birth, kind', ['generate', 'genesis', 'genre', 'genetic']],
+    ['lev', 'levāre', 'to lift, to lighten', ['elevate', 'relieve', 'alleviate', 'levity']],
+    ['loc', 'locus', 'place', ['local', 'locate', 'dislocate', 'allocate']],
+    ['luc', 'lūcēre', 'to shine', ['lucid', 'translucent', 'elucidate', 'lucent']],
+    ['mand', 'mandāre', 'to order, to entrust', ['command', 'demand', 'mandate', 'remand']],
+    ['nov', 'novus', 'new', ['novel', 'innovate', 'renovate', 'novice']],
+    ['par', 'parāre', 'to prepare', ['prepare', 'repair', 'apparatus', 'preparation']],
+    ['pat', 'patī', 'to suffer, to endure', ['patient', 'passion', 'compassion', 'passive']],
+    ['ple', 'plēre', 'to fill', ['complete', 'supplement', 'deplete', 'replete']],
+    ['prim', 'prīmus', 'first', ['primary', 'prime', 'primitive', 'primate']],
+    ['sect', 'secāre', 'to cut', ['section', 'dissect', 'intersect', 'bisect']],
+    ['serv', 'servāre', 'to keep, to save', ['preserve', 'conserve', 'reserve', 'observe']],
+    ['sign', 'signum', 'sign, mark', ['signal', 'signature', 'design', 'assign']],
+    ['tempor', 'tempus', 'time', ['temporary', 'contemporary', 'tempo', 'temporal']],
+    ['terr', 'terra', 'earth, land', ['terrain', 'territory', 'terrestrial', 'subterranean']],
+    ['tort', 'torquēre', 'to twist', ['distort', 'contort', 'torture', 'extort']],
+    ['urb', 'urbs', 'city', ['urban', 'suburb', 'urbane', 'suburban']],
+    ['vac', 'vacāre', 'to be empty', ['vacant', 'evacuate', 'vacuum', 'vacate']],
+    ['viv', 'vīvere', 'to live', ['survive', 'revive', 'vivid', 'vivacious']],
+    ['am', 'amāre', 'to love', ['amateur', 'amiable', 'enamored', 'amorous']],
+    ['anim', 'anima', 'breath, spirit', ['animal', 'animate', 'unanimous', 'magnanimous']],
+    ['aqua', 'aqua', 'water', ['aquarium', 'aquatic', 'aqueduct', 'aquamarine']],
+    ['bene', 'bene', 'well, good', ['benefit', 'benevolent', 'benefactor', 'benediction']],
+    ['brev', 'brevis', 'short', ['brief', 'abbreviate', 'brevity', 'breve']],
+    ['capit', 'caput', 'head', ['capital', 'captain', 'decapitate', 'capitulate']],
+    ['carn', 'carō', 'flesh', ['carnivore', 'incarnate', 'carnal', 'carnival']],
+    ['cor', 'cor', 'heart', ['cordial', 'courage', 'accord', 'discord']],
+    ['corp', 'corpus', 'body', ['corpse', 'corporate', 'incorporate', 'corps']],
+    ['dent', 'dēns', 'tooth', ['dentist', 'dental', 'trident', 'indent']],
+    ['domin', 'dominus', 'master, lord', ['dominate', 'dominion', 'predominant', 'domain']],
+    ['equ', 'aequus', 'equal, level', ['equal', 'equator', 'equivalent', 'equity']],
+    ['fin', 'fīnis', 'end, limit', ['final', 'finish', 'define', 'infinite']],
+    ['firm', 'firmus', 'firm, strong', ['confirm', 'affirm', 'firmament', 'infirmary']],
+    ['flor', 'flōs', 'flower', ['floral', 'flourish', 'florist', 'flora']],
+    ['form', 'forma', 'shape', ['reform', 'transform', 'uniform', 'formation']],
+    ['fort', 'fortis', 'strong', ['fortitude', 'fortress', 'effort', 'comfort']],
+    ['frag', 'frangere', 'to break', ['fragile', 'fragment', 'fracture', 'fraction']],
+    ['grat', 'grātus', 'pleasing, thankful', ['grateful', 'gratitude', 'congratulate', 'gratuity']],
+    ['host', 'hostis', 'enemy, stranger', ['hostile', 'hostage', 'hospitable', 'host']],
+    ['hum', 'humus', 'ground, earth', ['humble', 'humus', 'exhume', 'humiliate']],
+    ['jud', 'jūdex', 'judge', ['judge', 'judicial', 'prejudice', 'judicious']],
+    ['junct', 'jungere', 'to join', ['junction', 'conjunction', 'juncture', 'adjunct']],
+    ['later', 'latus', 'side', ['lateral', 'bilateral', 'equilateral', 'collateral']],
+    ['liber', 'līber', 'free', ['liberty', 'liberal', 'liberate', 'deliver']],
+    ['lingu', 'lingua', 'tongue, language', ['language', 'linguist', 'bilingual', 'lingo']],
+    ['liter', 'littera', 'letter', ['literate', 'literature', 'literal', 'obliterate']],
+    ['magn', 'magnus', 'great, large', ['magnify', 'magnitude', 'magnificent', 'magnate']],
+    ['man', 'manus', 'hand', ['manual', 'manage', 'manuscript', 'manipulate']],
+    ['mar', 'mare', 'sea', ['marine', 'maritime', 'submarine', 'mariner']],
+    ['matr', 'māter', 'mother', ['maternal', 'matron', 'matrimony', 'matriarch']],
+    ['medi', 'medius', 'middle', ['medium', 'median', 'mediate', 'medieval']],
+    ['mem', 'memor', 'mindful', ['memory', 'memorial', 'commemorate', 'memorable']],
+    ['min', 'minor', 'less, smaller', ['minor', 'minimum', 'diminish', 'minority']],
+    ['mon', 'monēre', 'to warn, to remind', ['monitor', 'admonish', 'premonition', 'summon']],
+    ['nom', 'nōmen', 'name', ['nominate', 'nominal', 'denominate', 'ignominy']],
+    ['omni', 'omnis', 'all', ['omnivore', 'omnipotent', 'omnipresent', 'omniscient']],
+    ['pac', 'pāx', 'peace', ['pacify', 'pacific', 'pact', 'appease']],
+    ['patr', 'pater', 'father', ['paternal', 'patriot', 'patron', 'patriarch']],
+    ['ped', 'pēs', 'foot', ['pedal', 'pedestrian', 'impede', 'centipede']],
+    ['pet', 'petere', 'to seek', ['appetite', 'compete', 'petition', 'impetus']],
+    ['rex', 'rēx', 'king', ['regal', 'regalia', 'reign', 'interregnum']],
+    ['rid', 'rīdēre', 'to laugh', ['ridicule', 'deride', 'ridiculous', 'derision']],
+    ['rog', 'rogāre', 'to ask', ['interrogate', 'arrogant', 'prerogative', 'derogatory']],
+    ['sal', 'salīre', 'to leap', ['salient', 'assail', 'resilient', 'somersault']],
+  ];
+  MORE_ROOTS.forEach((r, i) => {
+    const id = r[0], latin = r[1], mean = r[2], kids = r[3];
+    ROOTS[id] = {
+      latin: latin, mean: mean, tag: i < 24 ? 'learned' : 'unopened', stage: 4,
+      kids: kids.join(' · '),
+      derivs: kids.map((w) => [w, 'from ' + latin]),
+    };
+  });
+  const LIB_ORDER = DETAILED_ORDER.concat(MORE_ROOTS.map((r) => r[0]));
+
+  /* Prefixes & suffixes — [form, meaning, examples] */
+  const PREFIXES = [
+    ['ab–', 'away, from', 'absent · abduct · abnormal'],
+    ['ad–', 'to, toward', 'adhere · adjacent · advance'],
+    ['ante–', 'before', 'antecedent · anterior · antebellum'],
+    ['anti–', 'against', 'antidote · antibody · antisocial'],
+    ['bi–', 'two', 'bicycle · bilateral · bisect'],
+    ['circum–', 'around', 'circumference · circumspect · circumvent'],
+    ['con–', 'with, together', 'connect · concur · construct'],
+    ['contra–', 'against', 'contradict · contrast · contravene'],
+    ['de–', 'down, from', 'descend · deduct · depart'],
+    ['dis–', 'apart, not', 'disperse · dislike · disconnect'],
+    ['ex–', 'out', 'exit · export · extract'],
+    ['extra–', 'beyond', 'extraordinary · extract · extraterrestrial'],
+    ['in–', 'in, into', 'include · inject · import'],
+    ['in–', 'not', 'invisible · inactive · incapable'],
+    ['inter–', 'between', 'interact · intersect · international'],
+    ['intra–', 'within', 'intramural · intravenous · intranet'],
+    ['mal–', 'bad', 'malfunction · malice · malnutrition'],
+    ['mis–', 'wrong', 'mistake · misplace · misjudge'],
+    ['non–', 'not', 'nonsense · nonstop · nonprofit'],
+    ['ob–', 'against, toward', 'object · obstruct · obtain'],
+    ['per–', 'through', 'perceive · persist · pervade'],
+    ['post–', 'after', 'postpone · postscript · postwar'],
+    ['pre–', 'before', 'predict · prevent · preview'],
+    ['pro–', 'forward, for', 'proceed · project · promote'],
+    ['re–', 'back, again', 'return · rewind · reflect'],
+    ['retro–', 'backward', 'retrospect · retrograde · retroactive'],
+    ['sub–', 'under', 'submarine · submit · subway'],
+    ['super–', 'above', 'superior · supervise · superhuman'],
+    ['trans–', 'across', 'transport · translate · transfer'],
+    ['ultra–', 'beyond', 'ultraviolet · ultrasound · ultramodern'],
+  ];
+  const SUFFIXES = [
+    ['–able', 'able to be', 'portable · readable · flexible'],
+    ['–acy', 'state or quality', 'privacy · accuracy · democracy'],
+    ['–al', 'relating to', 'natural · legal · musical'],
+    ['–ance', 'state or action', 'importance · distance · guidance'],
+    ['–ate', 'to make, to act', 'activate · educate · dominate'],
+    ['–ence', 'state or quality', 'presence · silence · confidence'],
+    ['–er', 'one who', 'teacher · builder · runner'],
+    ['–fy', 'to make', 'clarify · simplify · purify'],
+    ['–ic', 'relating to', 'historic · poetic · organic'],
+    ['–ify', 'to make', 'beautify · identify · justify'],
+    ['–ion', 'act or process', 'action · creation · tension'],
+    ['–ism', 'doctrine, belief', 'realism · heroism · criticism'],
+    ['–ist', 'one who', 'artist · scientist · novelist'],
+    ['–ity', 'state or quality', 'clarity · gravity · unity'],
+    ['–ive', 'tending to', 'active · creative · massive'],
+    ['–ize', 'to make', 'realize · modernize · organize'],
+    ['–ment', 'result or means', 'movement · argument · judgment'],
+    ['–or', 'one who', 'actor · inventor · narrator'],
+    ['–ous', 'full of', 'famous · nervous · curious'],
+    ['–tion', 'act or state', 'motion · nation · relation'],
+  ];
 
   /* The garden — pressed specimens, in the design's order. */
   const GARDEN = [
@@ -546,11 +714,11 @@
           <div class="sprig">${sprigMark}</div>
         </div>
         <div class="derivs">${derivs}</div>
-        <div class="delight">
+        ${r.delight ? `<div class="delight">
           <div class="tag">delight</div>
           <p>${r.delight}</p>
-        </div>
-        ${opts.compact ? `<div class="provenance">${esc(r.planted)}</div>` : ''}
+        </div>` : ''}
+        ${opts.compact && r.planted ? `<div class="provenance">${esc(r.planted)}</div>` : ''}
       </div>`;
   }
 
@@ -596,9 +764,9 @@
      LIBRARY
      =========================================================== */
   const CATS = [
-    { key: 'roots', label: 'roots', count: 100 },
-    { key: 'prefixes', label: 'prefixes', count: 30 },
-    { key: 'suffixes', label: 'suffixes', count: 20 },
+    { key: 'roots', label: 'roots', count: () => LIB_ORDER.length },
+    { key: 'prefixes', label: 'prefixes', count: () => PREFIXES.length },
+    { key: 'suffixes', label: 'suffixes', count: () => SUFFIXES.length },
   ];
 
   function libCardHTML(id) {
@@ -615,29 +783,33 @@
       </button>`;
   }
 
-  function libMatches() {
-    const q = state.lib.q.trim().toLowerCase();
-    if (!q) return LIB_ORDER.slice();
-    return LIB_ORDER.filter((id) => {
-      const r = ROOTS[id];
-      return (r.latin + ' ' + r.mean + ' ' + r.kids).toLowerCase().includes(q);
-    });
+  function affixCardHTML(a) {
+    return `
+      <div class="lib-card affix">
+        <div class="r-top"><div class="r-latin">${esc(a[0])}</div></div>
+        <div class="r-mean">${esc(a[1])}</div>
+        <div class="r-kids">${esc(a[2])}</div>
+      </div>`;
   }
+
+  function libGridHTML() {
+    const q = state.lib.q.trim().toLowerCase();
+    if (state.lib.cat === 'roots') {
+      const ids = q
+        ? LIB_ORDER.filter((id) => (ROOTS[id].latin + ' ' + ROOTS[id].mean + ' ' + ROOTS[id].kids).toLowerCase().includes(q))
+        : LIB_ORDER.slice();
+      return ids.length ? ids.map(libCardHTML).join('') : libEmpty();
+    }
+    const src = state.lib.cat === 'prefixes' ? PREFIXES : SUFFIXES;
+    const items = q ? src.filter((a) => a.join(' ').toLowerCase().includes(q)) : src;
+    return items.length ? items.map(affixCardHTML).join('') : libEmpty();
+  }
+  function libEmpty() { return `<div class="lib-empty">Nothing in the folio matches “${esc(state.lib.q)}”.</div>`; }
 
   function renderLibrary() {
     const v = views.library;
     const cats = CATS.map((c) =>
-      `<button class="lib-cat${c.key === state.lib.cat ? ' active' : ''}" data-cat="${c.key}">${c.label} · ${c.count}</button>`).join('');
-
-    let grid;
-    if (state.lib.cat === 'roots') {
-      const ids = libMatches();
-      grid = ids.length
-        ? ids.map(libCardHTML).join('')
-        : `<div class="lib-empty">No specimen matches “${esc(state.lib.q)}”.</div>`;
-    } else {
-      grid = `<div class="lib-empty">The ${state.lib.cat} folio is still being pressed.</div>`;
-    }
+      `<button class="lib-cat${c.key === state.lib.cat ? ' active' : ''}" data-cat="${c.key}">${c.label} · ${c.count()}</button>`).join('');
 
     v.innerHTML = `
       <div class="lib-wrap">
@@ -650,20 +822,15 @@
         </div>
         <div class="lib-cats">${cats}</div>
         <div class="scroll" style="flex:1">
-          <div class="lib-grid">${grid}</div>
+          <div class="lib-grid">${libGridHTML()}</div>
         </div>
       </div>`;
 
     const input = v.querySelector('#libq');
     input.addEventListener('input', () => {
       state.lib.q = input.value;
-      // re-render just the grid to keep focus
-      const gridEl = v.querySelector('.lib-grid');
-      if (state.lib.cat === 'roots') {
-        const ids = libMatches();
-        gridEl.innerHTML = ids.length ? ids.map(libCardHTML).join('') : `<div class="lib-empty">No specimen matches “${esc(state.lib.q)}”.</div>`;
-        wireLibCards(v);
-      }
+      v.querySelector('.lib-grid').innerHTML = libGridHTML();   // re-render grid, keep focus
+      wireLibCards(v);
     });
     v.querySelectorAll('[data-cat]').forEach((b) => b.addEventListener('click', () => {
       state.lib.cat = b.dataset.cat; renderLibrary();

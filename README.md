@@ -34,7 +34,10 @@ Or just open `index.html` in a browser.
   on a closing screen.
 - **Garden** — your roots as pressed specimens, drawn as plants that grow
   from seedling to bloom. Desktop shows a specimen plate alongside.
-- **Library** — a searchable folio of roots, with their families.
+- **Library** — a searchable folio: **110 Latin roots** (each with its
+  meaning and four derivatives), **30 prefixes**, and **20 suffixes**.
+  Search filters within the active category; tapping a root opens its
+  specimen plate.
 - **Settings** — new roots/day, reviews/day, export / import, reset.
   Everything is local: no accounts, no analytics.
 
