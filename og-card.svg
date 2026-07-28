@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#EAE4D3"/>
+  <rect x="60" y="52" width="1080" height="526" rx="8" fill="#FBF8EF" stroke="#CFC7B5" stroke-width="2"/>
+  <text x="108" y="126" fill="#8A9070" font-family="monospace" font-size="18" letter-spacing="5">A HERBARIUM OF LATIN ROOTS</text>
+  <text x="104" y="268" fill="#2E2B22" font-family="Georgia, serif" font-size="112" font-style="italic">radix</text>
+  <text x="110" y="344" fill="#55643F" font-family="Georgia, serif" font-size="35">Press roots like specimens.</text>
+  <text x="110" y="397" fill="#A79E8B" font-family="Arial, sans-serif" font-size="25">Parse words. Compose meanings. Grow what you know.</text>
+  <g transform="translate(824 90)">
+    <path d="M120 410C102 294 142 194 120 74" stroke="#55643F" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <ellipse cx="66" cy="306" rx="50" ry="20" fill="#55643F" transform="rotate(-34 66 306)"/>
+    <ellipse cx="178" cy="236" rx="50" ry="20" fill="#55643F" transform="rotate(34 178 236)"/>
+    <ellipse cx="68" cy="164" rx="46" ry="19" fill="#8A9070" transform="rotate(-34 68 164)"/>
+    <circle cx="120" cy="50" r="20" fill="#A56A54"/>
+    <circle cx="92" cy="70" r="20" fill="#A56A54"/>
+    <circle cx="148" cy="70" r="20" fill="#A56A54"/>
+    <line x1="-22" y1="448" x2="266" y2="448" stroke="#A79E8B" stroke-width="2"/>
+    <text x="122" y="485" text-anchor="middle" fill="#8A9070" font-family="monospace" font-size="16" letter-spacing="3">SPECIMEN · ROOT</text>
+  </g>
+</svg>
