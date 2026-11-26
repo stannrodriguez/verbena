@@ -37,26 +37,26 @@
       latin: 'spectāre', mean: 'to look, to watch', tag: 'learned', stage: 4,
       kids: 'inspect · respect · spectacle · circumspect',
       derivs: [
-        ['inspect', 'in + spect — to look into'],
-        ['respect', 're + spect — to look back at, regard'],
-        ['suspect', 'sub + spect — to look at from below'],
-        ['spectacle', 'spect + acle — a thing to look at'],
-        ['retrospect', 'retro + spect — a look backward'],
-        ['circumspect', 'circum + spect — looking around'],
+        ['inspect', 'in + spect: to look into'],
+        ['respect', 're + spect: to look back at, regard'],
+        ['suspect', 'sub + spect: to look at from below'],
+        ['spectacle', 'spect + acle: a thing to look at'],
+        ['retrospect', 'retro + spect: a look backward'],
+        ['circumspect', 'circum + spect: looking around'],
       ],
-      delight: 'A <em>speculum</em> is “a little looking-thing” — Romans named the mirror after the act.',
+      delight: 'A <em>speculum</em> is “a little looking-thing”; Romans named the mirror after the act.',
       planted: 'planted june 30 · reviewed 8 times · in bloom',
     },
     port: {
       latin: 'portāre', mean: 'to carry', tag: 'learned', stage: 4,
       kids: 'transport · import · portable · report',
       derivs: [
-        ['transport', 'trans + port — to carry across'],
-        ['import', 'in + port — to carry in'],
-        ['export', 'ex + port — to carry out'],
-        ['report', 're + port — to carry back'],
-        ['portable', 'port + able — able to be carried'],
-        ['support', 'sub + port — to carry from beneath'],
+        ['transport', 'trans + port: to carry across'],
+        ['import', 'in + port: to carry in'],
+        ['export', 'ex + port: to carry out'],
+        ['report', 're + port: to carry back'],
+        ['portable', 'port + able: able to be carried'],
+        ['support', 'sub + port: to carry from beneath'],
       ],
       delight: 'A <em>porter</em> carries your bags; a <em>portfolio</em> once meant leaves you carry.',
       planted: 'planted june 28 · reviewed 9 times · in bloom',
@@ -65,26 +65,26 @@
       latin: 'dīcere', mean: 'to say, to speak', tag: 'learned', stage: 2,
       kids: 'dictate · predict · verdict · contradict',
       derivs: [
-        ['dictate', 'dict + ate — to say for writing'],
-        ['predict', 'pre + dict — to say beforehand'],
-        ['verdict', 'ver + dict — a true saying'],
-        ['contradict', 'contra + dict — to speak against'],
-        ['dictionary', 'dict + ionary — a book of sayings'],
-        ['edict', 'e + dict — an order spoken out'],
+        ['dictate', 'dict + ate: to say for writing'],
+        ['predict', 'pre + dict: to say beforehand'],
+        ['verdict', 'ver + dict: a true saying'],
+        ['contradict', 'contra + dict: to speak against'],
+        ['dictionary', 'dict + ionary: a book of sayings'],
+        ['edict', 'e + dict: an order spoken out'],
       ],
-      delight: 'A <em>dictator</em> was one whose word alone was law — he only had to say it.',
+      delight: 'A <em>dictator</em> was one whose word alone was law: he only had to say it.',
       planted: 'planted july 12 · reviewed 3 times · growing',
     },
     duc: {
       latin: 'dūcere', mean: 'to lead', tag: 'learned', stage: 4,
       kids: 'conduct · produce · educate · duct',
       derivs: [
-        ['conduct', 'con + duct — to lead together'],
-        ['produce', 'pro + duce — to lead forth'],
-        ['educate', 'e + duc — to lead out of ignorance'],
-        ['induce', 'in + duce — to lead into'],
-        ['reduce', 're + duce — to lead back'],
-        ['aqueduct', 'aqua + duct — a leading of water'],
+        ['conduct', 'con + duct: to lead together'],
+        ['produce', 'pro + duce: to lead forth'],
+        ['educate', 'e + duc: to lead out of ignorance'],
+        ['induce', 'in + duce: to lead into'],
+        ['reduce', 're + duce: to lead back'],
+        ['aqueduct', 'aqua + duct: a leading of water'],
       ],
       delight: 'A <em>duke</em> (dux) was simply a leader; a <em>duct</em> leads air the same way.',
       planted: 'planted june 30 · reviewed 8 times · in bloom',
@@ -93,12 +93,12 @@
       latin: 'mittere', mean: 'to send', tag: 'learned', stage: 3,
       kids: 'transmit · submit · dismiss · mission',
       derivs: [
-        ['transmit', 'trans + mitt — to send across'],
-        ['submit', 'sub + mitt — to send under'],
-        ['dismiss', 'dis + miss — to send away'],
-        ['mission', 'miss + ion — a sending-forth'],
-        ['admit', 'ad + mitt — to send toward, let in'],
-        ['emit', 'e + mitt — to send out'],
+        ['transmit', 'trans + mitt: to send across'],
+        ['submit', 'sub + mitt: to send under'],
+        ['dismiss', 'dis + miss: to send away'],
+        ['mission', 'miss + ion: a sending-forth'],
+        ['admit', 'ad + mitt: to send toward, let in'],
+        ['emit', 'e + mitt: to send out'],
       ],
       delight: 'A <em>missile</em> is simply “a thing sent”; a <em>message</em> is what’s sent.',
       planted: 'planted july 6 · reviewed 5 times · growing',
@@ -107,12 +107,12 @@
       latin: 'scrībere', mean: 'to write', tag: 'learned', stage: 2,
       kids: 'describe · inscribe · script · scribble',
       derivs: [
-        ['describe', 'de + scrib — to write down'],
-        ['inscribe', 'in + scrib — to write into'],
-        ['prescribe', 'pre + scrib — to write beforehand'],
-        ['script', 'script — a thing written'],
-        ['subscribe', 'sub + scrib — to write one’s name under'],
-        ['manuscript', 'manu + script — written by hand'],
+        ['describe', 'de + scrib: to write down'],
+        ['inscribe', 'in + scrib: to write into'],
+        ['prescribe', 'pre + scrib: to write beforehand'],
+        ['script', 'script: a thing written'],
+        ['subscribe', 'sub + scrib: to write one’s name under'],
+        ['manuscript', 'manu + script: written by hand'],
       ],
       delight: 'A <em>scribe</em> wrote by hand; to <em>scribble</em> is writing gone wild.',
       planted: 'planted july 10 · reviewed 3 times · growing',
@@ -121,12 +121,12 @@
       latin: 'capere', mean: 'to take, to seize', tag: 'unopened', stage: 2,
       kids: 'capture · concept · receive · capable',
       derivs: [
-        ['capture', 'capt + ure — a taking'],
-        ['concept', 'con + cept — a taking-together, in the mind'],
-        ['receive', 're + cip — to take back'],
-        ['capable', 'cap + able — able to take, to hold'],
-        ['accept', 'ad + cept — to take toward oneself'],
-        ['escape', 'ex + cape — to slip out of one’s cape'],
+        ['capture', 'capt + ure: a taking'],
+        ['concept', 'con + cept: a taking-together, in the mind'],
+        ['receive', 're + cip: to take back'],
+        ['capable', 'cap + able: able to take, to hold'],
+        ['accept', 'ad + cept: to take toward oneself'],
+        ['escape', 'ex + cape: to slip out of one’s cape'],
       ],
       delight: 'To <em>escape</em> is literally to leave your cape in the captor’s hands.',
       planted: 'not yet planted · unopened',
@@ -135,12 +135,12 @@
       latin: 'ferre', mean: 'to bear, to carry', tag: 'unopened', stage: 1,
       kids: 'transfer · refer · fertile · relate',
       derivs: [
-        ['transfer', 'trans + fer — to carry across'],
-        ['refer', 're + fer — to carry back to'],
-        ['fertile', 'fer + tile — bearing fruit'],
-        ['confer', 'con + fer — to bring together'],
-        ['offer', 'ob + fer — to carry toward'],
-        ['prefer', 'pre + fer — to carry before, in favor'],
+        ['transfer', 'trans + fer: to carry across'],
+        ['refer', 're + fer: to carry back to'],
+        ['fertile', 'fer + tile: bearing fruit'],
+        ['confer', 'con + fer: to bring together'],
+        ['offer', 'ob + fer: to carry toward'],
+        ['prefer', 'pre + fer: to carry before, in favor'],
       ],
       delight: 'A <em>conifer</em> is a “cone-bearer”; roots turn up in the strangest woods.',
       planted: 'not yet planted · unopened',
@@ -149,26 +149,26 @@
       latin: 'vidēre', mean: 'to see', tag: 'unopened', stage: 2,
       kids: 'video · evident · provide · vision',
       derivs: [
-        ['video', 'vid + eo — I see'],
-        ['evident', 'e + vid — seen out plainly'],
-        ['provide', 'pro + vid — to see ahead'],
-        ['vision', 'vis + ion — a seeing'],
-        ['revise', 're + vis — to see again'],
-        ['supervise', 'super + vis — to see from above'],
+        ['video', 'vid + eo: I see'],
+        ['evident', 'e + vid: seen out plainly'],
+        ['provide', 'pro + vid: to see ahead'],
+        ['vision', 'vis + ion: a seeing'],
+        ['revise', 're + vis: to see again'],
+        ['supervise', 'super + vis: to see from above'],
       ],
-      delight: '<em>Déjà vu</em> — already seen — borrows the root the Romans watched with.',
+      delight: '<em>Déjà vu</em> (already seen) borrows the root the Romans watched with.',
       planted: 'not yet planted · unopened',
     },
     vert: {
       latin: 'vertere', mean: 'to turn', tag: 'unopened', stage: 1,
       kids: 'convert · reverse · versatile · vertigo',
       derivs: [
-        ['convert', 'con + vert — to turn wholly'],
-        ['reverse', 're + vers — to turn back'],
-        ['versatile', 'vers + atile — turning easily'],
-        ['divert', 'di + vert — to turn aside'],
-        ['invert', 'in + vert — to turn upside down'],
-        ['anniversary', 'anni + vers — the year’s turning'],
+        ['convert', 'con + vert: to turn wholly'],
+        ['reverse', 're + vers: to turn back'],
+        ['versatile', 'vers + atile: turning easily'],
+        ['divert', 'di + vert: to turn aside'],
+        ['invert', 'in + vert: to turn upside down'],
+        ['anniversary', 'anni + vers: the year’s turning'],
       ],
       delight: 'A <em>verse</em> turns at the line’s end, like a plough turning the furrow.',
       planted: 'not yet planted · unopened',
@@ -177,12 +177,12 @@
       latin: 'tenēre', mean: 'to hold', tag: 'unopened', stage: 1,
       kids: 'contain · tenant · retain · tenacious',
       derivs: [
-        ['contain', 'con + tain — to hold together'],
-        ['retain', 're + tain — to hold back'],
-        ['tenant', 'ten + ant — one who holds land'],
-        ['tenacious', 'ten + acious — holding fast'],
-        ['sustain', 'sub + tain — to hold up from beneath'],
-        ['tenure', 'ten + ure — a holding'],
+        ['contain', 'con + tain: to hold together'],
+        ['retain', 're + tain: to hold back'],
+        ['tenant', 'ten + ant: one who holds land'],
+        ['tenacious', 'ten + acious: holding fast'],
+        ['sustain', 'sub + tain: to hold up from beneath'],
+        ['tenure', 'ten + ure: a holding'],
       ],
       delight: 'A <em>tenet</em> is a belief you hold; the <em>tenor</em> holds the melody’s line.',
       planted: 'not yet planted · unopened',
@@ -191,12 +191,12 @@
       latin: 'currere', mean: 'to run', tag: 'unopened', stage: 1,
       kids: 'current · occur · cursor · excursion',
       derivs: [
-        ['current', 'curr + ent — running, of water or now'],
-        ['occur', 'ob + cur — to run toward, to befall'],
-        ['cursor', 'curs + or — a runner across the screen'],
-        ['excursion', 'ex + curs — a running-out, a trip'],
-        ['recur', 're + cur — to run back, to happen again'],
-        ['curriculum', 'curr + iculum — a course to run'],
+        ['current', 'curr + ent: running, of water or now'],
+        ['occur', 'ob + cur: to run toward, to befall'],
+        ['cursor', 'curs + or: a runner across the screen'],
+        ['excursion', 'ex + curs: a running-out, a trip'],
+        ['recur', 're + cur: to run back, to happen again'],
+        ['curriculum', 'curr + iculum: a course to run'],
       ],
       delight: 'A <em>courier</em> runs your message; a <em>corridor</em> is a running-place.',
       planted: 'not yet planted · unopened',
@@ -394,17 +394,17 @@
     { type: 'decompose', word: 'inspect',
       segs: [['in', 'in', 'into'], ['spect', 'spectāre', 'to look']],
       sense: 'To look closely into a thing.' },
-    { type: 'compose', meaning: '“to send under — to yield”', word: 'submit',
+    { type: 'compose', meaning: '“to send under, to yield”', word: 'submit',
       prefix: 'sub', answer: 'mitt', tray: ['mitt', 'duc', 'port', 'dic', 'fer'] },
     { type: 'decompose', word: 'eradicate',
       segs: [['e', 'ex', 'out'], ['radic', 'radix', 'root'], ['ate', '-āre', 'verb-maker']],
       sense: 'To pull out by the roots.' },
-    { type: 'compose', meaning: '“to see ahead — to supply”', word: 'provide',
+    { type: 'compose', meaning: '“to see ahead, to supply”', word: 'provide',
       prefix: 'pro', answer: 'vid', tray: ['vid', 'duc', 'spect', 'scrib', 'port'] },
     { type: 'decompose', word: 'conduct',
       segs: [['con', 'con', 'together'], ['duct', 'dūcere', 'to lead']],
-      sense: 'To lead together — to guide or direct.' },
-    { type: 'compose', meaning: '“to hold back — to keep”', word: 'retain',
+      sense: 'To lead together; to guide or direct.' },
+    { type: 'compose', meaning: '“to hold back, to keep”', word: 'retain',
       prefix: 're', answer: 'ten', tray: ['ten', 'mitt', 'vert', 'cur', 'port'] },
     { type: 'decompose', word: 'transcribe',
       segs: [['trans', 'trans', 'across'], ['scrib', 'scrībere', 'to write']],
@@ -546,8 +546,8 @@
       return `<button class="tile${used ? ' used' : ''}" data-tile="${id}">${esc(TILE_LABEL[id])}</button>`;
     }).join('');
     const cta = s.solved
-      ? `<button class="btn leaf block" data-act="next-compose">${esc(item.word)} &nbsp;·&nbsp; continue</button>`
-      : `<button class="btn block" disabled>Place a root to check</button>`;
+      ? `<button class="btn leaf block" data-act="next-compose">${esc(item.word)} &nbsp;·&nbsp; Continue</button>`
+      : `<button class="btn block" disabled>Choose a root from the tray</button>`;
     return `
       <div class="stage-body">
         <div class="mode-label">compose</div>
@@ -561,7 +561,7 @@
       </div>
       <div class="foot" style="display:flex;flex-direction:column;gap:10px">
         ${cta}
-        <div class="hint-link"><a data-act="show-root">show me the root</a></div>
+        <div class="hint-link"><a data-act="show-root">view root of the day</a></div>
       </div>`;
   }
 
@@ -576,7 +576,7 @@
             <div class="trans">make haste slowly</div>
             <div class="divider"></div>
             <div class="tally">your garden: ${23 + state.planted} roots, 4 in bloom</div>
-            <button class="btn leaf again" data-act="restart">Begin another</button>
+            <button class="btn leaf again" data-act="restart">Begin another session</button>
           </div>
         </div></div>
       </div>`;
@@ -612,9 +612,9 @@
     });
   }
   function rateWord(rate, word) {
-    if (rate === 'again') return word + ' — back tomorrow';
-    if (rate === 'easy') return word + ' — see you in 9 days';
-    return word + ' — knew it. back in 4 days';
+    if (rate === 'again') return word + ': back tomorrow';
+    if (rate === 'easy') return word + ': back in 9 days';
+    return word + ': back in 4 days';
   }
 
   function wireCompose(v, item) {
@@ -658,7 +658,7 @@
     return `
       <div class="garden-head">
         <div class="title">Garden</div>
-        <div class="sub">Welcome back. The garden kept.</div>
+        <div class="sub">Your pressed roots, from seedling to bloom.</div>
         <div class="count">${12 + state.planted} roots · 3 in bloom · 3 dormant</div>
       </div>`;
   }
@@ -708,7 +708,7 @@
       <div class="plate">
         <div class="plate-top">
           <div>
-            <div class="spec-label">radix · specimen ${roman} · verb</div>
+            <div class="spec-label">radix · specimen ${roman}</div>
             <div class="lat-big">${esc(r.latin)}</div>
             <div class="en">${esc(r.mean)}</div>
           </div>
@@ -749,13 +749,13 @@
         </div>
         <div class="rod-plate-wrap">${plateHTML(id)}</div>
         <div class="rod-foot" style="display:flex;flex-direction:column;gap:10px">
-          <button class="btn leaf block" data-act="plant">Plant it</button>
+          <button class="btn leaf block" data-act="plant">Plant in garden</button>
           <button class="btn block" data-act="close-plate">Back</button>
         </div>
       </div>`;
     overlay.classList.add('show');
     overlay.querySelector('[data-act="plant"]').addEventListener('click', () => {
-      state.planted++; toast(r.latin + ' — planted'); closePlate();
+      state.planted++; toast(r.latin + ': planted'); closePlate();
     });
     overlay.querySelector('[data-act="close-plate"]').addEventListener('click', closePlate);
   }
@@ -805,7 +805,7 @@
     const items = q ? src.filter((a) => a.join(' ').toLowerCase().includes(q)) : src;
     return items.length ? items.map(affixCardHTML).join('') : libEmpty();
   }
-  function libEmpty() { return `<div class="lib-empty">Nothing in the folio matches “${esc(state.lib.q)}”.</div>`; }
+  function libEmpty() { return `<div class="lib-empty">No ${state.lib.cat} match “${esc(state.lib.q)}”. Try another search or switch categories.</div>`; }
 
   function renderLibrary() {
     const v = views.library;
@@ -815,10 +815,10 @@
     v.innerHTML = `
       <div class="lib-wrap">
         <div class="lib-head">
-          <div><div class="title">Library</div><div class="sub">A folio of roots, prefixes and suffixes.</div></div>
+          <div><div class="title">Library</div><div class="sub">A folio of roots, prefixes, and suffixes.</div></div>
           <div class="lib-search">
             <span class="eyebrow faint">⌕</span>
-            <input type="search" id="libq" placeholder="Search roots, prefixes, suffixes" value="${esc(state.lib.q)}" autocomplete="off">
+            <input type="search" id="libq" placeholder="Search ${state.lib.cat}" aria-label="Search ${state.lib.cat}" value="${esc(state.lib.q)}" autocomplete="off">
           </div>
         </div>
         <div class="lib-cats">${cats}</div>
@@ -848,9 +848,9 @@
      =========================================================== */
   /* The four screens, explained in the herbarium's voice. */
   const ABOUT_SCREENS = [
-    ['Today', 'A short session of cards. <em>Decompose</em> reveals the roots hidden inside a word; <em>Compose</em> asks you to build one from a prefix and a root. Rate how well it came back — <b>Again</b>, <b>Good</b>, or <b>Easy</b> — and the next review is scheduled for you.'],
+    ['Today', 'A short session of cards. <em>Decompose</em> reveals the roots inside a word; <em>Compose</em> asks you to build a word from a prefix and a root. Rate your recall (<b>Not yet</b>, <b>Knew it</b>, or <b>Easy</b>) to schedule the next review.'],
     ['Garden', 'Every root you plant is pressed here like a specimen, drawn as a plant that grows from seedling to bloom as you review it. Let one lapse and it goes dormant, waiting to be tended again.'],
-    ['Library', 'The whole folio — 110 Latin roots, 30 prefixes, 20 suffixes — to browse and search. Tap any root to open its plate: its family of derivatives and a small etymological delight.'],
+    ['Library', 'Browse and search the full folio: 110 Latin roots, 30 prefixes, and 20 suffixes. Select any root to open its specimen plate and view its derivatives.'],
   ];
 
   function aboutHTML() {
@@ -864,7 +864,7 @@
       <div class="about-head">
         <div class="eyebrow">radix · about</div>
         <div class="title">A herbarium of roots</div>
-        <p class="about-lede">Most English words grow from Latin roots. Radix teaches you to see them — to press a word like a specimen, read the roots within, and grow a garden of what you know.</p>
+        <p class="about-lede">Many English words grow from Latin roots. Radix helps you see them: press a word like a specimen, read the roots within, and grow a garden of what you know.</p>
       </div>
       <div class="about-grow">
         ${grow}
@@ -873,7 +873,7 @@
       <div class="about-list">${steps}</div>
       <div class="about-note">
         <div class="tag">the method</div>
-        <p>Radix uses <em>spaced review</em>: roots you know well return rarely, ones you stumble on return soon. One new root a day is plenty — each brings its whole family with it. Everything lives on this device: no accounts, no analytics.</p>
+        <p>Radix uses <em>spaced review</em>: roots you know well return less often, while ones you miss return sooner. One new root a day is plenty, since each brings its whole family of words. Everything stays on this device: no accounts and no analytics.</p>
       </div>`;
   }
 
@@ -888,28 +888,28 @@
             <div class="set-row">
               <div><div class="label">New roots per day</div><div class="hint">One is plenty; each root brings its family.</div></div>
               <div class="stepper">
-                <button class="step-btn" data-step="new" data-dir="-1" aria-label="fewer">−</button>
+                <button class="step-btn" data-step="new" data-dir="-1" aria-label="Decrease new roots per day">−</button>
                 <div class="step-val" id="v-new">${settings.newPerDay}</div>
-                <button class="step-btn" data-step="new" data-dir="1" aria-label="more">+</button>
+                <button class="step-btn" data-step="new" data-dir="1" aria-label="Increase new roots per day">+</button>
               </div>
             </div>
             <div class="set-row">
               <div><div class="label">Reviews per day</div><div class="hint">Overflow waits quietly for tomorrow.</div></div>
               <div class="stepper">
-                <button class="step-btn" data-step="rev" data-dir="-1" aria-label="fewer">−</button>
+                <button class="step-btn" data-step="rev" data-dir="-1" aria-label="Decrease reviews per day">−</button>
                 <div class="step-val" id="v-rev">${settings.reviewsPerDay}</div>
-                <button class="step-btn" data-step="rev" data-dir="1" aria-label="more">+</button>
+                <button class="step-btn" data-step="rev" data-dir="1" aria-label="Increase reviews per day">+</button>
               </div>
             </div>
             <div class="set-row">
-              <div><div class="label">Progress</div><div class="hint">Everything lives on this device.</div></div>
+              <div><div class="label">Progress</div><div class="hint">Saved locally. Export or import as JSON.</div></div>
               <div class="set-actions">
                 <button class="mini-btn" data-act="export">Export</button>
                 <button class="mini-btn" data-act="import">Import</button>
               </div>
             </div>
             <div class="set-row">
-              <div><div class="label">Start over</div><div class="hint">Clears the garden. Asks twice.</div></div>
+              <div><div class="label">Start over</div><div class="hint">Resets settings and planted roots. Select twice to confirm.</div></div>
               <button class="mini-btn danger" data-act="reset">Reset</button>
             </div>
           </div>
@@ -941,9 +941,9 @@
     let armed = false;
     const resetBtn = v.querySelector('[data-act="reset"]');
     resetBtn.addEventListener('click', () => {
-      if (!armed) { armed = true; resetBtn.textContent = 'Really reset?'; toast('tap again to clear the garden'); setTimeout(() => { armed = false; resetBtn.textContent = 'Reset'; }, 3000); return; }
+      if (!armed) { armed = true; resetBtn.textContent = 'Confirm reset'; toast('select reset again to confirm'); setTimeout(() => { armed = false; resetBtn.textContent = 'Reset'; }, 3000); return; }
       settings = Object.assign({}, DEFAULTS); saveSettings(); state.planted = 0;
-      renderSettings(); toast('garden cleared');
+      renderSettings(); toast('settings and garden reset');
     });
   }
   function clamp(n, lo, hi) { return Math.max(lo, Math.min(hi, n)); }
@@ -954,7 +954,7 @@
     const a = document.createElement('a');
     a.href = url; a.download = 'radix-garden.json'; a.click();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
-    toast('garden exported');
+    toast('progress exported as JSON');
   }
   function importProgress(file) {
     if (!file) return;
@@ -964,8 +964,8 @@
         const data = JSON.parse(reader.result);
         if (data.settings) settings = Object.assign({}, DEFAULTS, data.settings);
         if (typeof data.planted === 'number') state.planted = data.planted;
-        saveSettings(); renderSettings(); toast('garden imported');
-      } catch (e) { toast('could not read that file'); }
+        saveSettings(); renderSettings(); toast('progress imported');
+      } catch (e) { toast('could not read file: choose a valid JSON export'); }
     };
     reader.readAsText(file);
   }
